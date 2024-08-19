@@ -202,6 +202,8 @@ function updateAchievementsHTML(){
 				});
 				tmp.el["ach" + id].changeStyle("visibility", (getAllAchievements().includes(id)) ? "visible" : "hidden");
 				tmp.el["ach" + id].setAttr("widetooltip", tmp.ach[id].desc)
+				tmp.el["ach" + id].setAttr("aria-label", tmp.ach[id].desc)
+				tmp.el["ach"+id].setAttr("aria-disabled", !player.achievements.includes(id))
 			}
 		}
 		tmp.el.achFin.setTxt(rowsActive==0?"All Achievements are completed!":"")
