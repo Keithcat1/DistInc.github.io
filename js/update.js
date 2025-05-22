@@ -134,6 +134,8 @@ function setupHTML() {
 				id +
 				"&quot;)' onclick='tmp.inf.upgs.buy(&quot;" +
 				id +
+				"&quot;)' onkeydown='tmp.inf.upgs.handleKeyPress(event, &quot;" + 
+				id +
 				"&quot;)'>inf" +
 				id +
 				"</button></td>";

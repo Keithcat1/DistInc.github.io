@@ -112,7 +112,15 @@ function updateTempInfUpgs() {
 	};
 	if (!tmp.inf.upgs.hover) tmp.inf.upgs.hover = function (id) {
 		tmp.infSelected = id;
-		if (tmp.el) tmp.el.infUpgData.setHTML(tmp.inf.upgs.desc(tmp.infSelected));
+		if (tmp.el) {
+			if (tmp.el.infUpgData.el.getAttribute('aria-live') !== 'polite') {
+				tmp.el.infUpgData.el.setAttribute('aria-live', 'polite');
+			}
+			if (tmp.el.infUpgData.el.getAttribute('aria-atomic') !== 'true') {
+				tmp.el.infUpgData.el.setAttribute('aria-atomic', 'true');
+			}
+			tmp.el.infUpgData.setHTML(tmp.inf.upgs.desc(tmp.infSelected));
+		}
 	};
 	if (!tmp.inf.upgs.canBuy) tmp.inf.upgs.canBuy = function (id) {
 		let reqData = INF_UPGS.reqs[id];
@@ -157,6 +165,35 @@ function updateTempInfUpgs() {
 		if (HCCBA("noIU")) return
 		player.inf.knowledge = player.inf.knowledge.sub(ExpantaNum.mul(INF_UPGS.costs[id], m));
 		player.inf.upgrades.push(id);
+	};
+	if (!tmp.inf.upgs.handleKeyPress) tmp.inf.upgs.handleKeyPress = function (event, id) {
+	    // Fallback for older browsers or environments where event.key might not be fully supported for "Enter"
+	    const isEnterKey = event.key === 'Enter' || event.keyCode === 13;
+
+	    if (isEnterKey && event.shiftKey) { 
+	        event.preventDefault(); 
+	        
+	        // It's good practice to ensure the live region is correctly set up,
+	        // though step 1 should have handled this. This is for robustness.
+	        if (tmp.el.infUpgData.el.getAttribute('aria-live') !== 'polite') {
+	            tmp.el.infUpgData.el.setAttribute('aria-live', 'polite');
+	        }
+	        if (tmp.el.infUpgData.el.getAttribute('aria-atomic') !== 'true') {
+	            tmp.el.infUpgData.el.setAttribute('aria-atomic', 'true');
+	        }
+
+	        const description = tmp.inf.upgs.desc(id);
+	        tmp.el.infUpgData.setHTML(description);
+
+	        // Optional: Clear the announcement area after a short delay
+	        // setTimeout(() => {
+	        //     // Check if the description is still for the Shift+Enter'd item 
+	        //     // and if the item is not currently selected by hover
+	        //     if (tmp.el.infUpgData.el.innerHTML === description && tmp.infSelected !== id) {
+	        //         tmp.el.infUpgData.setHTML(""); 
+	        //     }
+	        // }, 5000); // 5 seconds delay
+	    }
 	};
 }
 
