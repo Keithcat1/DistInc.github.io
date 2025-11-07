@@ -219,9 +219,10 @@ function updateAchievements() {
 				let ach = tmp.ach[id];
 				if (ach) {
 					let el = new Element("ach" + id);
+					let name = ach.title;
 					let req = (ACH_DATA.descs[id] !== undefined ? ach.parse(ACH_DATA.descs[id]) : "Not currently implemented.");
 					let reward = ach.reward;
-					let txt = req;
+					let txt = name + "<br>" + req;
 					if (ach.has) txt += " (completed)";
 					if (reward !== "") txt += "<br>Reward: " + reward;
 					el.setHTML(txt);
