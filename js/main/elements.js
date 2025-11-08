@@ -297,9 +297,8 @@ function updateTimeReversalHTML(){
 			if (!tr2Pow().eq(1) && i == 2) desc += "<span class='grossminitxt'>(^" + showNum(tr2Pow()) + ")</span>";
 			if (!tr11Pow().eq(1) && i == 11)
 				desc += "<span class='grossminitxt'>(^" + showNum(tr11Pow()) + ")</span>";
-			tmp.el["tr" + i].setHTML(desc + "<br>Cost: " + showNum(upg.cost()) + " Time Cubes.");
-			if (upg.current !== undefined && (i > 15 ? modeActive("extreme") : true))
-				tmp.el["tr" + i].setTooltip("Currently: " + upg.disp(upg.current()));
+			const effect = upg.current !== undefined && (i > 15 ? modeActive("extreme") : true) ? "Currently: " + upg.disp(upg.current()) + "<br>" : "";
+			tmp.el["tr" + i].setHTML(desc + "<br>" + effect + "Cost: " + showNum(upg.cost()) + " Time Cubes.");
 			tmp.el["tr" + i].setClasses({
 				btn: true,
 				locked: !player.tr.upgrades.includes(i) && player.tr.cubes.lt(upg.cost()),
