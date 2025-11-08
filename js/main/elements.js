@@ -298,7 +298,8 @@ function updateTimeReversalHTML(){
 			if (!tr11Pow().eq(1) && i == 11)
 				desc += "<span class='grossminitxt'>(^" + showNum(tr11Pow()) + ")</span>";
 			const effect = upg.current !== undefined && (i > 15 ? modeActive("extreme") : true) ? "Currently: " + upg.disp(upg.current()) + "<br>" : "";
-			tmp.el["tr" + i].setHTML(desc + "<br>" + effect + "Cost: " + showNum(upg.cost()) + " Time Cubes.");
+			const cost = !player.tr.upgrades.includes(i) ? "Cost: " + showNum(upg.cost()) + " Time Cubes." : "";
+			tmp.el["tr" + i].setHTML(desc + "<br>" + effect + cost);
 			tmp.el["tr" + i].setClasses({
 				btn: true,
 				locked: !player.tr.upgrades.includes(i) && player.tr.cubes.lt(upg.cost()),
