@@ -340,8 +340,9 @@ function updateCollpaseHTML(){
 		);
 		for (let i = 1; i <= EM_AMT; i++) {
 			let ms = ESSENCE_MILESTONES[i];
-			tmp.el["lem" + i].setHTML(ms.desc + "<br>Req: " + showNum(ms.req) + " Life Essence.");
-			if (ms.disp !== undefined) tmp.el["lem" + i].setTooltip("Currently: " + ms.disp());
+			const active = hasCollapseMilestone(i) ? "<br>Active" : "";
+			const reward = ms.disp !== undefined ? "Currently: " + ms.disp() +"<br>" : "";
+			tmp.el["lem" + i].setHTML(ms.desc + active + "<br>" + reward + "Req: " + showNum(ms.req) + " Life Essence.");
 			tmp.el["lem" + i].setClasses({ msCont: true, r: !hasCollapseMilestone(i) });
 		}
 	}
