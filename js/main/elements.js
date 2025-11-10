@@ -468,6 +468,14 @@ function updateDarkCircleHTML(){
 	}
 }
 
+
+function srInfUpgBuy(event, id) {
+//	if(event.shiftKey) {
+//		document.ariaNotify(tmp.inf.upgs.desc(id));
+//	} else {
+		tmp.inf.upgs.buy(id);
+//	}
+}
 function updateInfinityEndorsementStuffHTML(){
 	tmp.el.endorsementManual.setDisplay(
 		player.inf.endorsements.gte(10) && ((tmp.inf.can && !player.automators["endorsements"]) || tmp.inf.stadium.canComplete)
@@ -496,16 +504,27 @@ function updateInfinitySubtabHTML(){
 		tmp.el.nextEndorsement.setTxt(formatDistance(tmp.inf.req));
 		tmp.el.knowledge.setTxt(showNum(player.inf.knowledge));
 		tmp.el.knowledgeGain.setTxt(formatGain(player.inf.knowledge, tmp.inf.knowledgeGain, "knowledge"));
+	let infTable = new Element("infUpgs");
 		for (let r = 1; r <= INF_UPGS.rows; r++) {
 			for (let c = 1; c <= INF_UPGS.cols; c++) {
+				const id = `${r};${c}`;
 				let state = "";
-				if (tmp.inf.upgs.repealed(r+";"+c) && !modeActive("easy")) state = "repealed";
-				else if (!tmp.inf.upgs.canBuy(r+";"+c)) state = "locked";
-				else if (player.inf.upgrades.includes(r+";"+c)) state = "bought";
-				else if (player.inf.knowledge.gte(ExpantaNum.mul(INF_UPGS.costs[r+";"+c], tmp.inf.upgCostMult(r+";"+c)))) state = "unbought";
+				if (tmp.inf.upgs.repealed(id) && !modeActive("easy")) state = "repealed";
+				else if (!tmp.inf.upgs.canBuy(id)) state = "locked";
+				else if (player.inf.upgrades.includes(id)) state = "bought";
+				else if (player.inf.knowledge.gte(ExpantaNum.mul(INF_UPGS.costs[id], tmp.inf.upgCostMult(id)))) state = "unbought";
 				else state = "locked";
-				tmp.el["inf" + (r+";"+c)].setDisplay(tmp.inf.upgs.shown(r+";"+c));
-				tmp.el["inf" + (r+";"+c)].setClasses({
+				let cell = tmp.el[`inf-cell-${id}`];
+				let elem = tmp.el[`inf-${id}`];
+//				let effectElem = tmp.el["inf-effect-" + id];
+
+				cell.setDisplay(tmp.inf.upgs.shown(id));
+				elem.setHTML(tmp.inf.upgs.desc(id));
+//				if(tmp.inf.upgs.effects[id]) {
+					//effectElem.setTxt(INF_UPGS.effects[id]());
+//				}
+				//elem.setAttr("aria-pressed", state == "pressed");
+				elem.setClasses({
 					btn: true,
 					inf: state == "unbought",
 					locked: state == "locked",
