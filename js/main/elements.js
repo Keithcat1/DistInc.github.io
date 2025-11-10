@@ -582,7 +582,7 @@ function updateAscensionHTML(){
 function updateNormalStadiumHTML(){
 	for (let i = 0; i < Object.keys(STADIUM_DESCS).length; i++) {
 		let name = Object.keys(STADIUM_DESCS)[i];
-		tmp.el[name + "Div"].setTooltip(tmp.inf.stadium.tooltip(name));
+		tmp.el[name + "Div-effect"].setTxt(tmp.inf.stadium.tooltip(name));
 		tmp.el[name + "Div"].setClasses({
 			stadiumChall: true,
 			comp: player.inf.stadium.completions.includes(name)
