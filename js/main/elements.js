@@ -1655,7 +1655,11 @@ function updateHTML() {
 	updateMiscHTML()
 	
 	// Features
-	tmp.el.nextFeature.setTxt(tmp.nf === "none" ? "All Features Unlocked!" : tmp.features[tmp.nf].desc);	
+	let bar = tmp.el.nextFeature;
+	bar.setAttr("aria-label", tmp.nf === "none" ? "All Features Unlocked!" : tmp.features[tmp.nf].desc);	
+	let oldProgress = bar.el.value;
+	let newProgress = tmp.nf == "none" ? 100 : (tmp.features[tmp.nf].progress() * 100).toFixed();
+	if(newProgress !== oldProgress) bar.el.value = newProgress;
 }
 
 function updateHTMLPerSec() {
