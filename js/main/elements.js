@@ -1105,16 +1105,36 @@ function updateScalarBosonsHTML(){
 				let ac = extra.active()
 				if (ac) text = extra.desc[ac]
 			}
-			tmp.el["higgs"+name].setHTML(text+"<br>Cost: "+showNum(data.cost)+" Higgs Bosons.")
+			let effect = null;
+			switch(name) {
+				case "1;1;0":
+				effect = "Currently: "+showNum(tmp.elm.bos["higgs_1;1;0"](true))+"x"
+			break;
+				case "0;1;1":
+				effect = "Currently: "+showNum(tmp.elm.bos["higgs_0;1;1"](true))+"x"
+			break;
+				case "3;0;0":
+				effect = "Currently: "+showNum(tmp.elm.bos["higgs_3;0;0"](true))+"x"
+			break;
+				case "0;2;1":
+				effect = "Currently: +"+showNum(tmp.elm.bos["higgs_0;2;1"](true))+"%"
+			break;
+				case "0;0;4":
+			effect = "Currently: "+showNum(tmp.elm.bos["higgs_0;0;4"](true))+"x"
+			break;
+				case "1;3;0":
+				effect = "Currently: "+showNum(tmp.elm.bos["higgs_1;3;0"](true))+"x"
+			break;
+				case "0;3;1":
+				effect = "Currently: "+showNum(tmp.elm.bos["higgs_0;3;1"](true))+"x"
+			break;
+				case "0;0;5":
+				effect = "Currently: "+showNum(tmp.elm.bos["higgs_0;0;5"](true))+" later"
+			break;
+			}
+			const cost = !player.elementary.bosons.scalar.higgs.upgrades.includes(name) ? `Cost: ${showNum(data.cost)} Higgs Bosons.` : ""
+			tmp.el["higgs"+name].setHTML(`${text}${effect ? "<br>" + effect : ""}${cost}`)
 		}
-		tmp.el["higgs1;1;0"].setTooltip("Currently: "+showNum(tmp.elm.bos["higgs_1;1;0"](true))+"x")
-		tmp.el["higgs0;1;1"].setTooltip("Currently: "+showNum(tmp.elm.bos["higgs_0;1;1"](true))+"x")
-		tmp.el["higgs3;0;0"].setTooltip("Currently: "+showNum(tmp.elm.bos["higgs_3;0;0"](true))+"x")
-		tmp.el["higgs0;2;1"].setTooltip("Currently: +"+showNum(tmp.elm.bos["higgs_0;2;1"](true))+"%")
-		tmp.el["higgs0;0;4"].setTooltip("Currently: "+showNum(tmp.elm.bos["higgs_0;0;4"](true))+"x")
-		tmp.el["higgs1;3;0"].setTooltip("Currently: "+showNum(tmp.elm.bos["higgs_1;3;0"](true))+"x")
-		tmp.el["higgs0;3;1"].setTooltip("Currently: "+showNum(tmp.elm.bos["higgs_0;3;1"](true))+"x")
-		tmp.el["higgs0;0;5"].setTooltip("Currently: "+showNum(tmp.elm.bos["higgs_0;0;5"](true))+" later")
 	}
 }
 
