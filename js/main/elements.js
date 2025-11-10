@@ -977,7 +977,7 @@ function updateQuarksHTML(){
 		showNum(player.elementary.fermions.quarks.amount) + " " + tmp.elm.ferm.quarkName() + " Quarks"
 	);
 	tmp.el.quarkGain.setTxt(showNum(adjustGen(tmp.elm.ferm.quarkGain, "quarks")));
-	tmp.el.quarkRewards.setTooltip(
+	tmp.el.quarkRewards.setTxt(
 		tmp.elm.ferm.quarkName(true) +
 			" Quarks: " +
 			tmp.elm.ferm.quarkDesc(QUARK_NAMES[player.elementary.fermions.quarks.type - 1])
@@ -989,7 +989,7 @@ function updateLeptonsHTML(){
 		showNum(player.elementary.fermions.leptons.amount) + " " + tmp.elm.ferm.leptonName() + " Leptons"
 	);
 	tmp.el.leptonGain.setTxt(showNum(adjustGen(tmp.elm.ferm.leptonGain, "leptons")));
-	tmp.el.leptonRewards.setTooltip(
+	tmp.el.leptonRewards.setTxt(
 		tmp.elm.ferm.leptonName(true) +
 			" Leptons: " +
 			tmp.elm.ferm.leptonDesc(LEPTON_NAMES[player.elementary.fermions.leptons.type - 1])
