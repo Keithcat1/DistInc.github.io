@@ -197,7 +197,7 @@ function setupSkyField(type) {
 		html += "<table><tr>"
 		for (let j=0;j<data.placements[i].length;j++) {
 			let id = data.placements[i][j]
-			html += "<td class='hexContainer'><button id='"+type+"Upg"+id+"' class='hexBtn' onmouseover='"+type+"Sel = "+id+";' onclick='buySkyUpg(&quot;"+type+"&quot;, "+id+")'>&"+GREEK_LETTERS[id]+";</button></td>"
+			html += "<td class='hexContainer'><button id='"+type+"Upg"+id+"' class='hexBtn' onclick='buySkyUpg(&quot;"+type+"&quot;, "+id+")'>&"+GREEK_LETTERS[id]+";</button></td>"
 		}
 		html += "</tr></table>"
 	}
