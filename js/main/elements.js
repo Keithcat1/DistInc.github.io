@@ -1572,8 +1572,8 @@ function updateSkyHTML() {
 					locked: player.elementary.sky.pions.amount.lt(getFieldUpgCost("pions", id)),
 				})
 				tmp.el["pionUpg"+id].changeStyle("visibility", player.elementary.sky.amount.gte(SKY_FIELDS[id].req)?"visible":"hidden")
+				tmp.el["pionUpg"+id].setHTML(("&"+GREEK_LETTERS[id]+"; ("+showNum(player.elementary.sky.pions.field[id]||0)+")<br>"+SKY_FIELDS[id].pionDesc+"<br>Currently: "+SKY_FIELDS[id].desc(tmp.elm.sky.pionEff[id])+"<br>Cost: "+showNum(getFieldUpgCost("pions", id))+" Pions"))
 			}
-			tmp.el.pionData.setHTML(pionSel==0?"":("Pion Upgrade &"+GREEK_LETTERS[pionSel]+"; ("+showNum(player.elementary.sky.pions.field[pionSel]||0)+")<br>"+SKY_FIELDS[pionSel].pionDesc+"<br>Currently: "+SKY_FIELDS[pionSel].desc(tmp.elm.sky.pionEff[pionSel])+"<br>Cost: "+showNum(getFieldUpgCost("pions", pionSel))+" Pions"))
 			tmp.el.maxPion.setDisplay(player.elementary.entropy.upgrades.includes(20))
 		} else if (skyTab == "spinors") {
 			tmp.el.nextSpinorUpgs.setTxt(player.elementary.sky.amount.gte(SKY_FIELD_UPGS_REQS[SKY_FIELD_UPGS_REQS.length-1])?"":("More upgrades at "+showNum(nextFieldReq)+" Skyrmions"))
@@ -1585,8 +1585,8 @@ function updateSkyHTML() {
 					locked: player.elementary.sky.spinors.amount.lt(getFieldUpgCost("spinors", id)),
 				})
 				tmp.el["spinorUpg"+id].changeStyle("visibility", player.elementary.sky.amount.gte(SKY_FIELDS[id].req)?"visible":"hidden")
+				tmp.el["spinorUpg"+id].setHTML(("&"+GREEK_LETTERS[id]+"; ("+showNum(player.elementary.sky.spinors.field[id]||0)+")<br>"+SKY_FIELDS[id].spinorDesc+"<br>Currently: "+SKY_FIELDS[id].desc(tmp.elm.sky.spinorEff[id])+"<br>Cost: "+showNum(getFieldUpgCost("spinors", id))+" Spinors"))
 			}
-			tmp.el.spinorData.setHTML(spinorSel==0?"":("Spinor Upgrade &"+GREEK_LETTERS[spinorSel]+"; ("+showNum(player.elementary.sky.spinors.field[spinorSel]||0)+")<br>"+SKY_FIELDS[spinorSel].spinorDesc+"<br>Currently: "+SKY_FIELDS[spinorSel].desc(tmp.elm.sky.spinorEff[spinorSel])+"<br>Cost: "+showNum(getFieldUpgCost("spinors", spinorSel))+" Spinors"))
 			tmp.el.maxSpinor.setDisplay(player.elementary.entropy.upgrades.includes(20))
 		}
 	}
